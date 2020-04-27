@@ -1,6 +1,6 @@
 ### 1st FROM - build environment
 
-FROM node as builder
+FROM node
 # after downloading node image, we now have node as our build environment
 COPY package.json .
 RUN npm install
@@ -16,10 +16,10 @@ RUN npm run build
 
 FROM nginx
 # after downloading nginx image, we now have node as our deploy environment
-COPY --from=builder  ./build/ /usr/share/nginx/html/
-# after copy, we now copy our front-end project code from the 1st-FROM container to the current container
+COPY --from=0  ./build/ /usr/share/nginx/html/
+# after copy, we now copy our front-end project code from the 1st-FROM image to the current container
 COPY nginx.conf /etc/nginx/
-# after copy, we now copy the nginx configuration file from the 1st-FROM container to the current container
+# after copy, we now copy the nginx configuration file from the 1st-FROM image to the current container
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
 # after entrypoint, we use nginx server to run our front-end project when our container is up 
 
