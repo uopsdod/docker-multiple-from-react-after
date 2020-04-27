@@ -45,7 +45,7 @@ class UIComponent extends Component {
 		return (
 			<div>
 				<h1>Docker demo - multiple FROM</h1>
-				<h1>1GB -> 1MB (1000% smaller) </h1>
+				<h1>1GB -> 100MB (ex. 體重80公斤->8公斤) </h1>
 			</div>
 		);
 	}	
